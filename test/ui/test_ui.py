@@ -26,7 +26,12 @@ from confuse import ConfigError
 
 from beets import config, plugins, ui
 from beets.test import _common
-from beets.test.helper import BeetsTestCase, IOMixin, PluginTestCase
+from beets.test.helper import (
+    BeetsTestCase,
+    IOMixin,
+    PluginTestCase,
+    control_stdin,
+)
 from beets.ui import commands
 from beets.util import syspath
 
@@ -162,7 +167,7 @@ class ConfigTest(TestPluginTestCase):
         with self.write_config_file() as config:
             config.write("library: /xxx/yyy/not/a/real/path")
 
-        with pytest.raises(ui.UserError):
+        with pytest.raises(ui.UserError), control_stdin("n"):
             self.run_command("test", lib=None)
 
     def test_user_config_file(self):
