@@ -90,6 +90,9 @@ Bug fixes:
 - :doc:`/plugins/ftintitle`: Fixed artist name splitting to prioritize explicit
   featuring tokens (feat, ft, featuring) over generic separators (&, and),
   preventing incorrect splits when both are present.
+- :doc:`/plugins/convert`: ``auto_keep`` now respects ``no_convert`` and
+  ``never_convert_lossy_files`` when deciding whether to copy/transcode items,
+  avoiding extra lossy duplicates.
 
 For plugin developers:
 
